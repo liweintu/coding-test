@@ -11,6 +11,8 @@ CentralSphere: % : %.cpp FORCE
 	$(CC) $(CFLAGS) $< -o $@ -lm
 BinomialCoefficient: % : %.cpp FORCE
 	$(CC) $(CFLAGS) $< -o $@ -lm
+Roots2Coeffs: % : %.cpp FORCE
+	$(CC) $(CFLAGS) $< -o $@ -lm
 
 
 
