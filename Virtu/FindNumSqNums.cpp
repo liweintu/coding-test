@@ -6,15 +6,38 @@
 #include <string>
 #include <bitset>
 #include <stdlib.h>
+#include <math.h>
 
 using namespace std;
 
 int main() {
   int A, B;
-  A = 10;
+  A = -1;
   B = 100;
+  unsigned NumSqrt = 0;
+
+  double SqrtA = sqrt(A);
+  double SqrtB = sqrt(B);
 
   cout << "A: " << A << ", B: " << B << endl;
+  cout << "sqrt of A: " << SqrtA << ", sqrt of B: " << SqrtB << endl;
+
+  if (B < 0) {
+    cout << "NumSqrt: " << 0 << endl;
+    return 0;
+  }
+
+  if (B == 0) {
+    cout << "NumSqrt: " << 1 << endl;
+    return 0;
+  }
+
+  for (int i = A < 0 ? 0 : SqrtA; i <= SqrtB; ++i) {
+    cout << "Found Sqaure Number: " << i << endl;
+    NumSqrt++;
+  }
+
+  cout << "NumSqrt: " << NumSqrt << endl;
 
   return 0;
 }
