@@ -2,6 +2,9 @@
 CC=g++
 CFLAGS=-std=c++11 -Wall -g
 
+q4: % : %.cpp FORCE
+	$(CC) $(CFLAGS) $< -o $@ -lm
+
 q3: % : %.cpp FORCE
 	$(CC) $(CFLAGS) $< -o $@ -lm
 
