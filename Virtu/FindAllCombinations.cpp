@@ -10,24 +10,46 @@
 
 using namespace std;
 
-bool updateDigitCount(char Pick, map<char, unsigned> &Digits) {
+// global container that stores all the combinations
+set<string> AllStrings;
+set<string> AllCombs;
+unsigned NumDigits = 0;
+
+void updateDigitCount(char Pick, map<char, unsigned> &Digits, string Comb) {
   if (Digits[Pick] > 0) {
     Digits[Pick]--;
-    return true;
+    Comb.append(&Pick);
+
+    for (pair<char, unsigned> UpdatedPair : Digits) {
+      if (UpdatedPair.second == 0)
+        continue;
+
+      updateDigitCount(UpdatedPair.first, Digits, Comb);
+    }
   }
 
-  return false;
+  if (AllStrings.insert(Comb).second) {
+    cout << "Got String: " << Comb << "\n";
+
+    if (Comb.size() == NumDigits) {
+      // cout << "Found Comb: " << Comb << "\n";
+      AllCombs.insert(Comb);
+    }
+  }
+
+  // re-store the used Digit back to map so that the following searching for
+  // combinations can continue
+  Digits[Pick]++;
+
+  return;
 }
 
+
 int main() {
-  // unsigned A = 212350030;
-  unsigned A = 11230;
-  unsigned NumDigits = 0;
+  unsigned A = 1220;
 
   string Num = to_string(A);
   cout << "Number String: " << Num << "\n\n";
-  // const char *Digits = Num.c_str();
-
 
   map<char, unsigned> Digit2Count;
   for (char Digit : Num) {
@@ -37,71 +59,26 @@ int main() {
 
   cout << "Digit Map:\n";
 
-
-  for (pair<char, unsigned> Pair : Digit2Count) {
+  for (pair<char, unsigned> Pair : Digit2Count)
     cout << "Digit: " << Pair.first << " => " << Pair.second << "\n";
+
+  cout << "=============\n\n";
+
+  map<char, unsigned> UpdatedMap = Digit2Count;
+  string Comb;
+  for (pair<char, unsigned> Pair : Digit2Count) {
+    if (Pair.first == '0')
+      continue;
+
+    if (Pair.second > 0)
+      updateDigitCount(Pair.first, UpdatedMap, Comb);
   }
 
-  cout << "=============\n";
-
-  for (unsigned i = 0; i < NumDigits; ++i) {
-    for (pair<char, unsigned> Pair : Digit2Count) {
-      map<char, unsigned> UpdatedDigits = Digit2Count;
-      char Digit = Pair.first;
-      unsigned Count = Pair.second;
-
-      if (Digit == '0')
-        continue;
-      
-      cout << "Picked:" << Digit << "\n";
-
-      while (updateDigitCount(Digit, UpdatedDigits)) {
-        cout << Digit << "\n";
-
-        for (pair<char, unsigned> UpdatedPair : UpdatedDigits) {
-          cout << "Digit: " << UpdatedPair.first << " | " << UpdatedPair.second << "\n";
-        }
-      }
-
-    }
-  }
-
-  set<string> AllCombs;
+  for (string Comb : AllCombs)
+    cout << "dump Comb:" << Comb << "\n";
 
   return 0;
 }
-
-
-
-// #define BITWIDTH 32
-// 
-// int FindNumOfBitOne(int In) {
-//   string InStr = bitset<BITWIDTH>(In).to_string();
-//   cout << "Binary format: " << InStr << "\n";
-//   const char *InChars = InStr.c_str();
-// 
-//   unsigned NumOfBitOne = 0;
-// 
-//   for (unsigned i = 0; i < BITWIDTH; i++) {
-//     if (InChars[i] == '1') {
-//       NumOfBitOne++;
-//     }
-//   }
-// 
-//   return NumOfBitOne;
-// }
-// 
-// int main() {
-//   int In;
-//   cout << "Enter an integer: ";
-//   cin >> In;
-// 
-//   cout << "Num of ones: " << FindNumOfBitOne(In) << "\n";
-// 
-//   return 0;
-// }
-// 
-// 
 
 
 // end of file
