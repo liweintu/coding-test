@@ -11,7 +11,6 @@
 using namespace std;
 
 // global container that stores all the combinations
-set<string> AllStrings;
 set<string> AllCombs;
 unsigned NumDigits = 0;
 
@@ -28,13 +27,11 @@ void updateDigitCount(char Pick, map<char, unsigned> &Digits, string Comb) {
     }
   }
 
-  if (AllStrings.insert(Comb).second) {
-    cout << "Got String: " << Comb << "\n";
+  cout << "Got String: " << Comb << "\n";
 
-    if (Comb.size() == NumDigits) {
-      // cout << "Found Comb: " << Comb << "\n";
-      AllCombs.insert(Comb);
-    }
+  if (Comb.size() == NumDigits) {
+    // cout << "Found Comb: " << Comb << "\n";
+    AllCombs.insert(Comb);
   }
 
   // re-store the used Digit back to map so that the following searching for
