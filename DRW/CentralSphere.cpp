@@ -3,6 +3,7 @@
 // central spheres required to cover them
 
 #include <iostream>
+#include <set>
 #include <vector>
 #include <algorithm>
 
@@ -18,19 +19,27 @@ struct Point3D {
 };
 
 int solution(vector<Point3D> &A) {
-  vector<unsigned> SquareRs;
+  // solution 1:
+  // vector<unsigned> SquareRs;
+  // for (Point3D P : A) {
+  //   unsigned SquareR = 0;
+  //   SquareR = (P.x * P.x) + (P.y * P.y) + (P.z * P.z);
+  //   cout << "SqR: " << SquareR << "\n";
+  //
+  //   if (find(SquareRs.begin(), SquareRs.end(), SquareR) != SquareRs.end())
+  //     continue;
+  //   else {
+  //     SquareRs.push_back(SquareR);
+  //     cout << P.x << " " << P.y << " " << " " << P.z << endl;
+  //   }
+  // }
+  //
+  // return SquareRs.size();
 
+  // solution 2: better solution
+  set<int long> SquareRs;
   for (Point3D P : A) {
-    unsigned SquareR = 0;
-    SquareR = (P.x * P.x) + (P.y * P.y) + (P.z * P.z);
-    cout << "SqR: " << SquareR << "\n";
-    
-    if (find(SquareRs.begin(), SquareRs.end(), SquareR) != SquareRs.end())
-      continue;
-    else {
-      SquareRs.push_back(SquareR);
-      cout << P.x << " " << P.y << " " << " " << P.z << endl;
-    }
+    SquareRs.insert(P.x * P.x + P.y * P.y + P.z * P.z);
   }
 
   return SquareRs.size();
