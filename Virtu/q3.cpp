@@ -24,12 +24,12 @@ string solution(string &S) {
   cout << "HexStr: " << HexStr << '\n';
 
   for (char &Digit : HexStr) {
-    if (Digit != 'A' &&
-        Digit != 'B' &&
-        Digit != 'C' &&
-        Digit != 'D' &&
-        Digit != 'E' &&
-        Digit != 'F' &&
+    if (Digit != 'a' &&
+        Digit != 'b' &&
+        Digit != 'c' &&
+        Digit != 'd' &&
+        Digit != 'e' &&
+        Digit != 'f' &&
         Digit != '1' &&
         Digit != '0') {
       cout << "ERROR\n";
@@ -46,7 +46,8 @@ string solution(string &S) {
 }
 
 int main() {
-  string A("257");
+  // string A("257");
+  string A("11259137");
   solution(A);
 
   return 0;
