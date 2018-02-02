@@ -2,10 +2,10 @@
 CC=g++
 CFLAGS=-std=c++11 -Wall -g
 
-FindNumSetsCollinearPts: % : %.cpp FORCE
+FindNumPairs4AutomorphicShift: % : %.cpp FORCE
 	$(CC) $(CFLAGS) $< -o $@ -lm
 
-FindNumPairs4AutomorphicShift: % : %.cpp FORCE
+FindNumSetsCollinearPts: % : %.cpp FORCE
 	$(CC) $(CFLAGS) $< -o $@ -lm
 
 FindNumOfBitOne: % : %.cpp FORCE
