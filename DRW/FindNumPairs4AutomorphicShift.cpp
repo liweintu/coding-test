@@ -76,7 +76,8 @@ int solution(int **Matrix, int Rows, int Cols) {
 
   cout << "NumInRow1: " << NumInRow1 << endl;
   cout << "NumInCol1: " << NumInCol1 << endl;
-  cout << "#pairs: " << NumInRow1 + NumInCol1 + NumInRow1 * NumInCol1 + 1 << endl;
+  // cout << "#pairs: " << NumInRow1 + NumInCol1 + NumInRow1 * NumInCol1 + 1 << endl;
+  cout << "#pairs: " << (NumInRow1 + 1) * (NumInCol1 + 1) << endl;
   return 0;
 }
 
