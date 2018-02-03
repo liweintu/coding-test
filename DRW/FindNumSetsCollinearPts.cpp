@@ -20,9 +20,9 @@ int solution(vector<pair<int,int>> Points) {
   set<int> VerticalX;
   set<pair<float,float>> SlopeCross;
 
-  for (int i = 0; i < Points.size(); i++) {
-    for (int j = i + 1; j < Points.size(); j++) {
-      for (int k = 0; k < Points.size(); k++) {
+  for (unsigned i = 0; i < Points.size(); i++) {
+    for (unsigned j = i + 1; j < Points.size(); j++) {
+      for (unsigned k = 0; k < Points.size(); k++) {
         if (k == i || k == j)
           continue;
 
